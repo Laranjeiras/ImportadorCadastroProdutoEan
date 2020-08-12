@@ -5,26 +5,74 @@ namespace ImportadorCadastroEan.Modelos
     public class Produto
     {
         public Guid GuidProduto { get; set; } = Guid.NewGuid();
-        public string Gtin { get; set; }
-        public string DescricaoNormalizada { get; set; }
-        public string DescricaoUpper { get; set; }
-        public string DescricaoAcento { get; set; }
-        public string Peso { get; set; }
-        public string Ncm { get; set; }
-        public string Cest { get; set; }
-        public string Marca { get; set; }
-        public string Categoria { get; set; }
-        public string Embalagem { get; set; }
-        public decimal Quantidade { get; set; } = 0;
-        public decimal PrecoMedio { get; set; } = 0;
-        public string ImgGtin { get; set; }
-        public string FotoPng { get; set; }
-        public string FotoGif { get; set; }
-        public string FotoTabloidePng { get; set; }
-        public string FotoTabloideGif { get; set; }
 
-        public DateTime CriadoEm { get; set; }
-        public DateTime AtualizadoEm { get; set; }
+        private string _gtin;
+
+        public string Gtin
+        {
+            get { return Zion.Common.Helpers.StringHelper.MaxLength(_gtin, 14); }
+            set { _gtin = value; }
+        }
+
+        //private string _descricaoNormalizada;
+
+        //public string DescricaoNormalizada
+        //{
+        //    get { return Zion.Common.Helpers.StringHelper.MaxLength(_descricaoNormalizada,50); }
+        //    set { _descricaoNormalizada = value; }
+        //}
+
+        private string _descricaoUpper;
+
+        public string DescricaoUpper
+        {
+            get { return Zion.Common.Helpers.StringHelper.MaxLength(_descricaoUpper, 60); }
+            set { _descricaoUpper = value; }
+        }
+
+        //public string DescricaoAcento { get; set; }
+        //public string Peso { get; set; }
+        private string _ncm;
+
+        public string Ncm
+        {
+            get { return Zion.Common.Helpers.StringHelper.MaxLength(_ncm, 8); }
+            set { _ncm = value; }
+        }
+
+        public string Ucom { get; set; }
+
+        //public string Cest { get; set; }
+        //public string Marca { get; set; }
+        //public string Categoria { get; set; }
+
+        private string _embalagem;
+        public string Embalagem
+        {
+            get { return Zion.Common.Helpers.StringHelper.MaxLength(_embalagem, 6); }
+            set { _embalagem = value; }
+        }
+
+        public decimal QuantidadeEmbalagem { get; set; } = 0;
+        public decimal PrecoMedio { get; set; } = 0;
+        //public string ImgGtin { get; set; }
+        //public string FotoPng { get; set; }
+        //public string FotoGif { get; set; }
+        //public string FotoTabloidePng { get; set; }
+        //public string FotoTabloideGif { get; set; }
+
+        public int IdProduto { get; set; } = 0;
+
+        public int PrecoCusto { get; set; } = 0;
+        public int Comissao { get; set; } = 0;
+
+        public int Estoque { get; set; } = 0;
+        public int EstoqueInicial { get; set; } = 0;
+
+        //public bool ExibirNaTabela { get; set; } = false;
+
+        public DateTime CriadoEm { get; set; } = DateTime.Now;
+        public DateTime AtualizadoEm { get; set; } = DateTime.Now;
 
         public bool ValidoParaNFe() 
         {

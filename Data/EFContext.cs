@@ -13,14 +13,12 @@ namespace ImportadorCadastroEan.Data
         {
             if (string.IsNullOrEmpty(_connectionString))
                 throw new ArgumentNullException("ConnectionString não informada");
-
-            //Database.EnsureCreated();
-            Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_connectionString);
+            optionsBuilder.UseSqlServer(_connectionString)            
+                       .AddInterceptors(new EFHintCommandInterceptor());
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
